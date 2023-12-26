@@ -1,7 +1,44 @@
 <!-- students/templates/students/add_grade.html -->
-<h2>Добавить оценку</h2>
-<form method="post" action="{% url 'add_grade' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Добавить</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить оценку</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h2>Добавить оценку</h2>
+    <form method="post" action="{% url 'add_grade' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

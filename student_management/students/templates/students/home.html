@@ -1,9 +1,64 @@
 <!-- students/templates/students/home.html -->
-<h2>Список студентов</h2>
-<ul>
-  {% for student in students %}
-    <li><a href="{% url 'student_detail' student.id %}">{{ student.name }}</a></li>
-  {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список студентов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
 
-<a href="{% url 'add_student' %}">Добавить студента</a>
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .delete-btn {
+            display: inline-block;
+            margin-left: 10px;
+            background-color: #dc3545;
+            color: #fff;
+            padding: 5px 10px;
+            text-decoration: none;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Список студентов</h2>
+    <ul>
+        {% for student in students %}
+            <li>
+                <a href="{% url 'student_detail' student.id %}">{{ student.name }}</a>
+                <a class="delete-btn" href="{% url 'delete_student_confirm' student.id %}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'add_student' %}">Добавить студента</a>
+</body>
+</html>

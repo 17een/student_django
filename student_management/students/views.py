@@ -13,7 +13,7 @@ def add_student(request):
         form = StudentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('student_list')  # Перенаправление на страницу со списком студентов
+            return redirect('home')  # Перенаправление на страницу со списком студентов
     else:
         form = StudentForm()
 
@@ -54,3 +54,14 @@ def delete_grade(request, grade_id):
         form = GradeDeleteForm(instance=grade)
 
     return render(request, 'students/delete_grade.html', {'form': form, 'grade': grade})
+
+def delete_student_confirm(request, student_id):
+    student = get_object_or_404(Student, pk=student_id)
+
+    if request.method == 'POST':
+        # Если запрос был отправлен методом POST, то удаляем студента и перенаправляем на главную страницу
+        student.delete()
+        return redirect('home')
+
+    # Если запрос был отправлен методом GET, отображаем страницу подтверждения удаления
+    return render(request, 'students/delete_student_confirm.html', {'student': student})
